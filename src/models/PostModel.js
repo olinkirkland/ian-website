@@ -9,8 +9,8 @@ export default class PostModel {
   constructor(data) {
     const fields = data.fields;
     this.title = fields.title;
-    this.date = fields.date;
-    this.tags = fields.tags; // Array
+    this.date = new Date(fields.date).toLocaleDateString();
+    this.tags = fields.tags; // Array of strings
     this.image = fields.image
       ? {
           url: fields.image.fields.file.url,
@@ -21,12 +21,22 @@ export default class PostModel {
     this.body = fields.body.content.map((entry) => {
       const type = entry.nodeType;
       let value = null;
-      switch (entry.nodeType) {
+      switch (type) {
         case ContentType.PARAGRAPH:
-          value = entry.content[0].value;
+          value = entry.content.map((node) => {
+            return {
+              mark: node.marks.length > 0 && node.marks[0].type,
+              text: node.value
+            };
+          });
           break;
         case ContentType.QUOTE:
-          value = entry.content[0].content.value;
+          value = entry.content[0].content.map((node) => {
+            return {
+              mark: node.marks.length > 0 && node.marks[0].type,
+              text: node.value
+            };
+          });
           break;
         case ContentType.IMAGE:
           value = {
@@ -41,7 +51,7 @@ export default class PostModel {
       }
 
       return {
-        type: entry.nodeType,
+        type: type,
         value: value
       };
     });

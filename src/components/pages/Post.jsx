@@ -28,26 +28,59 @@ export default function Post() {
 
   if (!post) return <>Loading post ...</>;
   return (
-    <div>
-      <h1>{post.title}</h1>
-      <p>{post.date}</p>
-      <img src={post.image.url} alt={post.image.alt} />
-      <ul className="tags">
-        {post.tags.map((tag) => (
-          <li key={tag}>{tag}</li>
-        ))}
-      </ul>
+    <div className="post">
+      <div className="post-header">
+        <h1>{post.title}</h1>
+        <p>{post.date}</p>
+        <img src={post.image.url} alt={post.image.alt} />
+        <ul className="tags">
+          {post.tags.map((tag) => (
+            <li key={tag}>{tag}</li>
+          ))}
+        </ul>
+      </div>
+
       <ul className="content">
         {post.body.map(
           (entry, index) =>
             // Paragraph
             (entry.type === ContentType.PARAGRAPH && (
-              <li key={index}>{JSON.stringify(entry)}</li>
+              <li key={index}>
+                <p>
+                  {entry.value.map((value) => {
+                    switch (value.mark) {
+                      case 'bold':
+                        return <b>{value.text}</b>;
+                        break;
+                      case 'italic':
+                        return <i>{value.text}</i>;
+                        break;
+                      default:
+                        return <>{value.text}</>;
+                        break;
+                    }
+                  })}
+                </p>
+              </li>
             )) ||
             // Quote
             (entry.type === ContentType.QUOTE && (
               <li key={index}>
-                <blockquote>{entry.text}</blockquote>
+                <blockquote>
+                  {entry.value.map((value) => {
+                    switch (value.mark) {
+                      case 'bold':
+                        return <b>{value.text}</b>;
+                        break;
+                      case 'italic':
+                        return <i>{value.text}</i>;
+                        break;
+                      default:
+                        return <>{value.text}</>;
+                        break;
+                    }
+                  })}
+                </blockquote>
               </li>
             )) ||
             // Horizontal Rule
@@ -60,6 +93,7 @@ export default function Post() {
             (entry.type === ContentType.IMAGE && (
               <li key={index}>
                 <img src={entry.value.url} alt={entry.value.alt} />
+                <p className="caption">{entry.value.alt}</p>
               </li>
             ))
         )}
