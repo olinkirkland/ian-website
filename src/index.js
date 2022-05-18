@@ -20,12 +20,15 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <StrictMode>
     <Header />
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/blog/:id" element={<Post />} />
+        <Route path={`${process.env.PUBLIC_URL}/`} element={<Home />} />
+        <Route path={`${process.env.PUBLIC_URL}/about`} element={<About />} />
+        <Route
+          path={`${process.env.PUBLIC_URL}/contact`}
+          element={<Contact />}
+        />
+        <Route path={`${process.env.PUBLIC_URL}/blog/:id`} element={<Post />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
