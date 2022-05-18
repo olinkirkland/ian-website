@@ -1,7 +1,7 @@
 import { createClient } from 'contentful';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import PostModel from '../../models/PostModel';
+import PostModel, { ContentType } from '../../models/PostModel';
 
 export default function Post() {
   const { id } = useParams();
@@ -11,14 +11,14 @@ export default function Post() {
     accessToken: process.env.REACT_APP_CONTENTFUL_ACCESS_TOKEN
   });
 
-  const [data, setData] = useState();
+  const [post, setPost] = useState();
 
   useEffect(() => {
     const query = { content_type: 'blogPost', 'fields.slug': id };
     client.getEntries(query).then(function(untypedBlogPosts) {
       try {
-        const blogPost = untypedBlogPosts.items[0];
-        setData(new PostModel(blogPost));
+        const data = untypedBlogPosts.items[0];
+        setPost(new PostModel(data));
       } catch (error) {
         // Redirect to NotFound page
         console.error('Error:', error);
@@ -26,10 +26,44 @@ export default function Post() {
     });
   }, []);
 
+  if (!post) return <>Loading post ...</>;
   return (
     <div>
-      <p>Post {id}</p>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
+      <h1>{post.title}</h1>
+      <p>{post.date}</p>
+      <img src={post.image.url} alt={post.image.alt} />
+      <ul className="tags">
+        {post.tags.map((tag) => (
+          <li key={tag}>{tag}</li>
+        ))}
+      </ul>
+      <ul className="content">
+        {post.body.map(
+          (entry, index) =>
+            // Paragraph
+            (entry.type === ContentType.PARAGRAPH && (
+              <li key={index}>{JSON.stringify(entry)}</li>
+            )) ||
+            // Quote
+            (entry.type === ContentType.QUOTE && (
+              <li key={index}>
+                <blockquote>{entry.text}</blockquote>
+              </li>
+            )) ||
+            // Horizontal Rule
+            (entry.type === ContentType.HORIZONTAL_RULE && (
+              <li key={index}>
+                <hr />
+              </li>
+            )) ||
+            // Image
+            (entry.type === ContentType.IMAGE && (
+              <li key={index}>
+                <img src={entry.value.url} alt={entry.value.alt} />
+              </li>
+            ))
+        )}
+      </ul>
     </div>
   );
 }

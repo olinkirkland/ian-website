@@ -29,7 +29,10 @@ export default class PostModel {
           value = entry.content[0].content.value;
           break;
         case ContentType.IMAGE:
-          value = entry.data.target.fields.file.url;
+          value = {
+            url: entry.data.target.fields.file.url,
+            alt: entry.data.target.fields.title
+          };
           break;
         case ContentType.HORIZONTAL_RULE:
           break;
