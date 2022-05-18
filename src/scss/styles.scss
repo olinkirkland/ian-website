@@ -61,7 +61,7 @@ footer {
   flex-direction: column;
   max-width: 64rem;
   margin: 2rem auto;
-  padding: 2rem;
+  padding: 4rem;
   display: flex;
   gap: 1rem;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -73,10 +73,11 @@ footer {
     margin-bottom: 4rem;
 
     ul.tags {
+      width: 100%;
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
-      gap: 0.4rem;
+      gap: 0.8rem;
 
       li {
         background: lightgrey;
@@ -94,6 +95,9 @@ footer {
     display: flex;
     flex-direction: column;
     gap: 2rem;
+
+    line-height: 2.4rem;
+    letter-spacing: 0.4px;
 
     img {
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
