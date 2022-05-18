@@ -51,13 +51,10 @@ export default function Post() {
                     switch (value.mark) {
                       case 'bold':
                         return <b>{value.text}</b>;
-                        break;
                       case 'italic':
                         return <i>{value.text}</i>;
-                        break;
                       default:
                         return <>{value.text}</>;
-                        break;
                     }
                   })}
                 </p>
@@ -71,13 +68,10 @@ export default function Post() {
                     switch (value.mark) {
                       case 'bold':
                         return <b>{value.text}</b>;
-                        break;
                       case 'italic':
                         return <i>{value.text}</i>;
-                        break;
                       default:
                         return <>{value.text}</>;
-                        break;
                     }
                   })}
                 </blockquote>
