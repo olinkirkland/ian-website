@@ -121,6 +121,7 @@ header {
   padding: 2rem;
   gap: 2rem;
   background-color: white;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 
   span.logo {
     font-size: 4rem;
@@ -138,7 +139,7 @@ header {
     ul {
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: 1.2rem;
     }
   }
 }
