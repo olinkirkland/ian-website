@@ -9,6 +9,7 @@ export default class PostModel {
   constructor(data) {
     const fields = data.fields;
     this.title = fields.title;
+    this.slug = fields.slug;
     this.date = new Date(fields.date).toLocaleDateString();
     this.tags = fields.tags; // Array of strings
     this.image = fields.image

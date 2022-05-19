@@ -26,7 +26,12 @@ export default function Post() {
     });
   }, []);
 
-  if (!post) return <div className="post">Loading post ...</div>;
+  if (!post)
+    return (
+      <div className="loading">
+        <span>Loading ...</span>
+      </div>
+    );
   return (
     <div className="post">
       <div className="post-header">

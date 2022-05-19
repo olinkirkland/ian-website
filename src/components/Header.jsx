@@ -1,9 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-export default function Header() {
+export default function Header({ logo }) {
   return (
     <header>
-      <span className="logo">Ian Kirkland</span>
+      <Link to="/">
+        <span className="logo">
+          <img src={logo.url} alt="" />
+        </span>
+      </Link>
       <nav>
         <ul>
           <li>
