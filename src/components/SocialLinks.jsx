@@ -3,18 +3,11 @@ export default function SocialLinks() {
   return (
     <ul className="social-links">
       <li>
-        <a href="https://www.linkedin.com/in/" target="_blank">
+        <a
+          href="https://www.linkedin.com/in/ian-kirkland-6595ab215/"
+          target="_blank"
+        >
           <i className="fab fa-linkedin"></i>
-        </a>
-      </li>
-      <li>
-        <a href="https://www.instagram.com/" target="_blank">
-          <i className="fab fa-instagram"></i>
-        </a>
-      </li>
-      <li>
-        <a href="https://twitter.com/" target="_blank">
-          <i className="fab fa-twitter"></i>
         </a>
       </li>
       <li>
