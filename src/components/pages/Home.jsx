@@ -30,9 +30,8 @@ export default function Home() {
           UK.
         </h2>
         <p className="hidden">
-          Recent graduate of the University of Edinburgh with a{' '}
-          <span className="theme">First Class</span> MA in English Literature
-          and Linguistics
+          Recent graduate of the University of Edinburgh with a First Class MA
+          in English Literature and Linguistics
         </p>
         <ul className="skills hidden">
           <li>Storytelling</li>
