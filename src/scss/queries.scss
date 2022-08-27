@@ -20,6 +20,21 @@
     margin-bottom: 0;
   }
 
+  ul.skills {
+    gap: 0.4rem;
+
+    li {
+      background: $secondary;
+      color: $dark;
+      padding: 0.2rem 0.6rem;
+    }
+
+    li:not(:last-child)::after {
+      content: '';
+      margin: 0;
+    }
+  }
+
   ul#home-links {
     flex-direction: column;
     gap: 2rem;

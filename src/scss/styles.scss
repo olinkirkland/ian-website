@@ -10,6 +10,8 @@
     outline: none;
   }
 
+  opacity: 1;
+
   &:hidden {
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
@@ -73,7 +75,7 @@ ul.skills {
   text-transform: uppercase;
   color: $secondary;
 
-  & > li:not(:last-child)::after {
+  li:not(:last-child)::after {
     content: '•';
     margin: 2rem;
   }
