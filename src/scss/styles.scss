@@ -9,6 +9,11 @@
   &:focus {
     outline: none;
   }
+
+  &:hidden {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
 }
 
 html {
@@ -59,6 +64,19 @@ img#profile {
   object-fit: cover;
   object-position: top;
   margin-bottom: 4rem;
+}
+
+ul.skills {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  text-transform: uppercase;
+  color: $secondary;
+
+  & > li:not(:last-child)::after {
+    content: '•';
+    margin: 2rem;
+  }
 }
 
 section.home {
@@ -199,13 +217,10 @@ a.button {
   padding: 1.6rem 2.4rem;
   border: 1px solid $secondary;
 
-  &:hover {
-    border: 1px solid $light;
-  }
-
   &.cta {
-    color: $dark;
     background-color: $primary;
+    border-color: $primary;
+    color: $dark;
   }
 }
 
